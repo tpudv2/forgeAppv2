@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge - Reciclaje en la Construcción</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .blue-gradient-section {
+            position: relative;
+            background: linear-gradient(167deg, #073485 0%, #305BC9 100%);
+            color: white;
+            overflow: hidden; /* To contain the pseudo-element */
+        }
+
+        .blue-gradient-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://placehold.co/1920x1080/FFFFFF/E0E0E0?text=Fondo+Sutil'); /* Placeholder for subtle background pattern */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0; /* Behind content */
+        }
+
+        .blue-gradient-section > .content-wrapper {
+            position: relative;
+            z-index: 1; /* Above pseudo-element */
+        }
+
+        .brand-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+            max-height: 40px; /* Adjust as needed */
+            object-fit: contain;
+        }
+
+        .brand-logo:hover {
+            filter: grayscale(0%);
+        }
+
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            position: relative;
+            height: 0;
+        }
+
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu {
+                display: block; /* Hidden by default, shown by JS */
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <script type="module">
+        // IMPORTANT: Replace with your actual Firebase config
+        // const firebaseConfig = { /* YOUR FIREBASE CONFIG OBJECT */ }; 
+        // if (typeof __firebase_config !== 'undefined') {
+        //     const firebaseConfig = JSON.parse(__firebase_config);
+        //     const app = initializeApp(firebaseConfig);
+        //     const db = getFirestore(app);
+        //     const auth = getAuth(app);
+        //     // ... rest of your Firebase setup
+        // } else {
+        //     console.warn("Firebase config not found. Email subscription will not work.");
+        // }
+        // For now, we'll simulate Firestore interaction
+        console.log("Firestore would be initialized here.");
+    </script>
+
+    <section id="inicio" class="blue-gradient-section min-h-screen flex flex-col">
+        <div class="content-wrapper container mx-auto px-6 py-8 flex-grow flex flex-col">
+            <nav class="flex items-center justify-between">
+                <a href="index.html" class="text-3xl font-bold text-white">FORGE</a>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-white hover:text-gray-300">Inicio</a>
+                    <a href="marketplace.html" class="text-white hover:text-gray-300">Marketplace</a>
+                    <a href="noticias.html" class="text-white hover:text-gray-300">Noticias</a>
+                    <a href="ayuda.html" class="text-white hover:text-gray-300">Ayuda</a>
+                    <a href="contacto.html" class="text-white hover:text-gray-300">Contacto</a>
+                    <a href="descargar.html" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">Descargar</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </nav>
+            <div id="mobileMenu" class="mobile-menu hidden md:hidden bg-blue-700 bg-opacity-90 absolute top-16 right-6 left-6 rounded-lg shadow-lg py-2 z-20">
+                <a href="index.html" class="block px-4 py-2 text-white hover:bg-blue-600">Inicio</a>
+                <a href="marketplace.html" class="block px-4 py-2 text-white hover:bg-blue-600">Marketplace</a>
+                <a href="noticias.html" class="block px-4 py-2 text-white hover:bg-blue-600">Noticias</a>
+                <a href="ayuda.html" class="block px-4 py-2 text-white hover:bg-blue-600">Ayuda</a>
+                <a href="contacto.html" class="block px-4 py-2 text-white hover:bg-blue-600">Contacto</a>
+                <a href="descargar.html" class="block px-4 py-2 text-white bg-green-500 hover:bg-green-600 m-2 rounded-lg text-center">Descargar</a>
+            </div>
+
+            <div class="flex-grow flex items-center">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <p class="text-sm uppercase tracking-wider text-gray-300 mb-2">SOBRE FORGE</p>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                            Un marketplace distinto.<br class="hidden md:inline"> Comprás. Vendés.<br class="hidden md:inline"> Forjas oportunidades.
+                        </h1>
+                        <div class="mt-8 space-y-4 md:space-y-0 md:space-x-4 flex flex-col sm:flex-row justify-center md:justify-start">
+                            <a href="marketplace.html" class="bg-white text-blue-700 font-semibold py-3 px-8 rounded-lg hover:bg-gray-200 transition duration-300 text-center">
+                                Ver marketplace
+                            </a>
+                            <a href="descargar.html" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 text-center">
+                                Descargar
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/assets/img/social-content.png" alt="Imagen descriptiva de Forge" class="rounded-lg max-w-sm w-full">
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-12 mt-auto">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 items-center justify-items-center">
+                    <img src="/assets/logos/695b1d5d6f988eba8cfaaeba6af1.png" data-color-src="/assets/logos/695b1d5d6f988eba8cfaaeba6af1.png" alt="Logo TiLC" class="brand-logo">
+                    <img src="/assets/logos/bh@2x.png" data-color-src="/assets/logos/bh@2x.png" alt="Logo UNS" class="brand-logo">
+                    <img src="/assets/logos/Logo-TIIC_Mesa-de-trabajo-1.png" data-color-src="/assets/logos/Logo-TIIC_Mesa-de-trabajo-1.png" alt="Logo Banco Patagonia" class="brand-logo">
+                    <img src="/assets/logos/logo-uns-horizontal.png" data-color-src="/assets/logos/logo-uns-horizontal.png" alt="Logo Bahia Hub" class="brand-logo">
+                    <img src="/assets/logos/mbb@2x.png" data-color-src="/assets/logos/mbb@2x.png" alt="Logo Municipio Bahía Blanca" class="brand-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="app-details" class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center md:justify-start">
+                    <div class="bg-gray-300 rounded-lg shadow-xl w-full max-w-xs h-[500px] flex items-center justify-center">
+                        <video controls poster="/assets/video/podcast-video.mp4" class="rounded-lg w-full h-full object-cover">
+                            <source src="/assets/video/podcast-video.mp4" type="video/mp4"> Tu navegador no soporta la etiqueta de video.
+                        </video>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">La App bahiense del reciclaje en la construcción.</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        En Forge podrás comprar artículos o contratar servicios, así como también venderlos y promocionarlos.
+                        Un marketplace distinto que apunta hacia la excelencia y constante evolución donde son los usuarios quienes construyen el ecosistema digital. Así es. Los mismos que compran y venden.
+                    </p>
+                    <p class="text-gray-700 font-semibold mb-8">Comprás. Vendés. Forjás oportunidades.</p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" target="_blank" class="transform hover:scale-105 transition-transform duration-300">
+                            <img src="https://placehold.co/180x60/000000/FFFFFF?text=Play+Store" alt="Descargar en Play Store" class="rounded-lg shadow-md h-12 md:h-14">
+                        </a>
+                        <a href="#" target="_blank" class="transform hover:scale-105 transition-transform duration-300">
+                            <img src="https://placehold.co/180x60/000000/FFFFFF?text=App+Store" alt="Descargar en App Store" class="rounded-lg shadow-md h-12 md:h-14">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="youtube-video" class="blue-gradient-section py-16 lg:py-24">
+        <div class="content-wrapper container mx-auto px-6">
+            <div class="bg-black/50 p-2 md:p-4 rounded-xl shadow-2xl max-w-5xl mx-auto">
+                <div class="video-responsive rounded-lg overflow-hidden">
+                    <iframe width="560" height="315" src="https://www.youtube.com/watch?v=ulg4iMnoBsI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">Impulsá tu carrera.</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        En FORGE podrás tanto publicar tus servicios, verificarlos y promocionarlos, como contratarlos de forma segura y avalada por los mismos usuarios.
+                    </p>
+                    <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300">
+                        Quiero crecer
+                    </a>
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://placehold.co/500x350/CCCCCC/FFFFFF?text=People+Content+PNG" alt="Imagen de personas colaborando" class="rounded-lg shadow-xl max-w-md w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="newsletter" class="blue-gradient-section py-16 lg:py-20">
+        <div class="content-wrapper container mx-auto px-6 text-center">
+            <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur-sm p-8 md:p-12 rounded-xl shadow-2xl">
+                <h2 class="text-3xl font-bold text-white mb-4">Suscribite al newsletter</h2>
+                <p class="text-gray-300 mb-8">
+                    Enterate de las novedades y sé el primero en aprovechar nuevas funciones, oportunidades y beneficios.
+                </p>
+                <form id="newsletterForm" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                    <input type="email" id="emailInput" name="email" placeholder="Tu correo electrónico" required
+                           class="flex-grow p-3 rounded-lg text-gray-800 focus:ring-2 focus:ring-green-400 focus:outline-none"
+                           aria-label="Correo electrónico">
+                    <button type="submit"
+                            class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+                        Suscribirse
+                    </button>
+                </form>
+                <p id="newsletterMessage" class="mt-4 text-sm text-green-300"></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="bg-black text-gray-400 text-center py-4 text-sm">
+        &copy; <span id="currentYear"></span> Forge. All Rights Reserved | Powered by QBAYMEDIA
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', (event) => {
+                const isClickInsideMenu = mobileMenu.contains(event.target);
+                const isClickOnButton = mobileMenuButton.contains(event.target);
+                if (!isClickInsideMenu && !isClickOnButton && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+
+
+        // Brand Logo Hover Effect
+        const logos = document.querySelectorAll('.brand-logo');
+        logos.forEach(logo => {
+            const bwSrc = logo.src;
+            const colorSrc = logo.dataset.colorSrc;
+            if (colorSrc) { // Ensure data-color-src is present
+                logo.addEventListener('mouseenter', () => {
+                    logo.src = colorSrc;
+                });
+                logo.addEventListener('mouseleave', () => {
+                    logo.src = bwSrc;
+                });
+            }
+        });
+
+        // Set Current Year in Footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Newsletter Form Submission (Placeholder for Firestore)
+        const newsletterForm = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('emailInput');
+        const newsletterMessage = document.getElementById('newsletterMessage');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = emailInput.value;
+                newsletterMessage.textContent = 'Procesando...';
+                newsletterMessage.classList.remove('text-red-400');
+                newsletterMessage.classList.add('text-green-300');
+
+
+                // Simulate API call / Firestore interaction
+                try {
+                    // In a real scenario, you would use Firebase SDK here:
+                    // await addDoc(collection(db, "subscriptions"), { email: email, subscribedAt: new Date() });
+                    console.log(`Simulating subscription for: ${email}`);
+                    
+                    // Simulate a delay
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+
+                    newsletterMessage.textContent = '¡Gracias por suscribirte!';
+                    emailInput.value = ''; // Clear input
+                } catch (error) {
+                    console.error("Error en la suscripción (simulado): ", error);
+                    newsletterMessage.textContent = 'Error al suscribir. Intenta de nuevo.';
+                    newsletterMessage.classList.remove('text-green-300');
+                    newsletterMessage.classList.add('text-red-400');
+                } finally {
+                     setTimeout(() => { newsletterMessage.textContent = ''; }, 5000); // Clear message after 5s
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
